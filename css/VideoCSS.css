@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f0f0f0; /* Fondo gris claro */
-    background-image: url('../Imagenes/VideoConf.jpg');
+    background-image: url('Imagenes/VideoConf.jpg');
     display: flex;
     height: 100vh;
 }
