@@ -1,0 +1,154 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* Fondo gris claro */
+    background-image: url('../Imagenes/VideoConf.jpg');
+    display: flex;
+    height: 100vh;
+}
+
+#video-container {
+    display: flex;
+    flex-direction: row; /* Cambiar a fila */
+    align-items: flex-start; /* Alinear arriba */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px; /* Aumentar el ancho máximo */
+    margin: auto; /* Centrar el contenedor en la pantalla */
+}
+
+#friends-list {
+    width: 250px; /* Ancho fijo para la lista de amigos */
+    background-color: rgba(29, 100, 151, 0.8); /* Color de fondo con opacidad */
+    color: white; /* Color del texto */
+    padding: 20px;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); /* Sombra */
+    margin-right: 20px; /* Espacio entre la lista y el video */
+}
+
+#friends-list h2 {
+    margin-top: 0;
+    font-size: 32px; /* Aumenta un poco más el tamaño de la fuente */
+    color: #ffffff; /* Cambia el color a blanco para un contraste más suave */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra más sutil y difusa */
+    font-weight: 700; /* Aumenta el peso de la fuente para un efecto más fuerte */
+    text-align: center; /* Centra el texto */
+    border-bottom: 3px solid #007bff; /* Línea más gruesa para un mayor énfasis */
+    padding-bottom: 15px; /* Espacio debajo del texto */
+    margin-bottom: 25px; /* Espacio por debajo del encabezado */
+    letter-spacing: 1px; /* Espacio entre letras para dar un efecto más limpio */
+    font-family: 'Georgia', serif; /* Cambia la fuente a una más elegante */
+    background: linear-gradient(to right, #007bff, #00bfff); /* Fondo degradado elegante */
+}
+
+#friends {
+    list-style: none; /* Sin viñetas */
+    padding: 0;
+    margin: 0;
+}
+
+#friends li {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #007bff; /* Color de fondo de los amigos */
+    color: white; /* Color del texto */
+    margin: 5px 0;
+    border-radius: 5px; /* Bordes redondeados */
+    text-align: center; /* Centrar el texto */
+    transition: background-color 0.3s;
+}
+
+#friends li:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el ratón */
+}
+
+
+#video-wrapper {
+    flex-grow: 1; /* Permite que el video tome el espacio restante */
+    margin-left: 20px; /* Espacio entre la lista de amigos y el video */
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en columna */
+    align-items: center; /* Centra el contenido horizontalmente */
+}
+
+video {
+    width: 100%;
+    height: auto;
+    background-color: black;
+    border-radius: 10px;
+    border: 2px solid #007bff; /* Borde azul alrededor del video */
+}
+
+#controls {
+    margin-top: 10px; /* Espacio entre el video y los controles */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; /* Espacio alrededor de los botones */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+}
+
+#controls button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+/* Asegúrate de que los botones estén visibles y centrados */
+#controls button {
+    margin: 5px; /* Espaciado entre botones */
+}
+
+
+#toggle-call {
+    background-color: #007bff; /* Color de fondo por defecto */
+}
+
+#toggle-call:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el ratón */
+}
+
+#toggle-call.active {
+    background-color: #28a745; /* Color de fondo cuando está activo */
+}
+
+#mute {
+    background-color: #ffc107; /* Color del botón de silenciar */
+}
+
+#mute:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el ratón */
+}
+
+#play-audio {
+    background-color: #7e7e7e; /* Color de fondo por defecto */
+}
+
+#play-audio:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el ratón */
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+    #video-container {
+        flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+        align-items: center; /* Centra los elementos */
+    }
+    
+    #friends-list {
+        width: 100%; /* Ancho completo para la lista de amigos */
+        margin-right: 0; /* Sin margen derecho */
+        margin-bottom: 20px; /* Margen inferior para espacio */
+    }
+
+    #video-wrapper {
+        margin-left: 0; /* Sin margen izquierdo */
+    }
+}

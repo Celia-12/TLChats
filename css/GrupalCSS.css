@@ -1,0 +1,231 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    background-image: url('../Imagenes/VideoConf.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+#sidebar {
+    width: 250px; /* Fija el ancho de la barra lateral */
+    background-color: rgba(29, 100, 151, 0.8);
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh; /* La barra lateral cubre toda la altura de la pantalla */
+    position: fixed; /* Fija la barra lateral al lado izquierdo de la pantalla */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Asegura que la barra lateral esté sobre otros elementos */
+}
+
+#sidebar h1 {
+    margin-top: 0;
+    font-size: 32px; /* Aumenta un poco más el tamaño de la fuente */
+    color: #ffffff; /* Cambia el color a blanco para un contraste más suave */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra más sutil y difusa */
+    font-weight: 700; /* Aumenta el peso de la fuente para un efecto más fuerte */
+    text-align: center; /* Centra el texto */
+    border-bottom: 3px solid #007bff; /* Línea más gruesa para un mayor énfasis */
+    padding-bottom: 15px; /* Espacio debajo del texto */
+    margin-bottom: 25px; /* Espacio por debajo del encabezado */
+    letter-spacing: 1px; /* Espacio entre letras para dar un efecto más limpio */
+    font-family: 'Georgia', serif; /* Cambia la fuente a una más elegante */
+    background: linear-gradient(to right, #007bff, #00bfff); /* Fondo degradado elegante */
+    padding: 20px; /* Espacio interior para crear un efecto de relleno */
+    border-radius: 5px; /* Bordes redondeados para suavizar el aspecto */
+}
+
+
+
+#group-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#group-list li {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    margin: 5px 0;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+#group-list li:hover {
+    background-color: #0056b3;
+}
+
+/* Contenido principal del chat, ahora ajustado para no superponerse */
+#main-content {
+    flex-grow: 1;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    margin-left: 300px; /* Añade margen para evitar que se superponga a la barra lateral */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden; /* Evita que el contenido se desborde */
+}
+
+#chat-header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#chat-container {
+    flex-grow: 1;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    overflow-y: auto; /* Habilita el scroll si el chat crece mucho */
+    height: calc(100vh - 150px); /* Altura dinámica para ajustarse al espacio disponible */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera para dar profundidad */
+}
+
+/* Mensaje de estilo propio */
+.message {
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    max-width: 70%; /* Limita el ancho máximo del mensaje */
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    transition: background-color 0.3s ease;
+}
+
+.message:hover {
+    background-color: #e0e0e0; /* Color más oscuro al pasar el cursor */
+}
+
+/* Estilo para los mensajes enviados */
+.message.sent {
+    background-color: #007bff;
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: 0; /* Para diferenciar los mensajes enviados */
+}
+
+/* Estilo para los mensajes recibidos */
+.message.received {
+    background-color: #f1f1f1;
+    color: #333;
+    margin-right: auto;
+    border-bottom-left-radius: 0;
+}
+
+/* Animación al mostrar un nuevo mensaje */
+.message {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.3s forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Entrada de mensajes */
+#message-input {
+    display: flex;
+    padding: 10px;
+    background-color: #333;
+    border-top: 1px solid #ddd;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    width: calc(100% - 40px); /* Ajusta el ancho al contenedor */
+    margin-left: 10px; /* Añade margen para alinear con el contenedor */
+    box-sizing: border-box; /* Asegura que el padding y el borde se incluyan en el ancho total */
+}
+
+#message-input input {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px 0 0 5px;
+    margin-right: 10px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+#message-input input:focus {
+    border-color: #007bff;
+}
+
+#message-input button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#message-input button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Media Queries para ajustar el diseño en pantallas pequeñas */
+@media (max-width: 768px) {
+    #sidebar {
+        width: 200px;
+    }
+    
+    #main-content {
+        margin-left: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        flex-direction: column;
+    }
+
+    #sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    #main-content {
+        margin-left: 0;
+    }
+
+    #chat-container {
+        height: auto;
+    }
+}
+

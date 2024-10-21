@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/GrupalCSS.css">
+    <title>Chat Grupal</title>
+</head>
+<body>
+    <!-- Barra lateral con la lista de grupos (puedes personalizar esto si es necesario) -->
+    <div id="sidebar">
+        <h1>Grupos</h1>
+        <ul id="group-list">
+            <li onclick="startGroupChat('Grupo 1')">Grupo 1</li>
+            <li onclick="startGroupChat('Grupo 2')">Grupo 2</li>
+            <li onclick="startGroupChat('Grupo 3')">Grupo 3</li>
+        </ul>
+    </div>
+
+    <!-- Contenido principal que muestra el chat grupal -->
+    <div id="main-content">
+        <div id="chat-header">
+            Grupo: <span id="group-name">  </span>
+        </div>
+        <div id="chat-container"></div>
+        <div id="message-input">
+            <input type="text" id="message" placeholder="Escribe un mensaje...">
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        // Cambiar el nombre del grupo
+        function startGroupChat(groupName) {
+            document.getElementById('group-name').textContent = groupName;
+            document.getElementById('chat-container').innerHTML = ''; // Limpiar el chat al iniciar uno nuevo
+        }
+
+        function sendMessage() {
+            const message = document.getElementById('message').value;
+            if (message.trim() !== '') {
+                const chatContainer = document.getElementById('chat-container');
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message';
+                messageElement.textContent = message;
+                chatContainer.appendChild(messageElement);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                document.getElementById('message').value = '';
+            }
+        }
+
+        document.getElementById('message').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>

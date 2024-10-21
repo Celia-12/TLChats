@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/VideoCSS.css">
+    <title>Videollamada</title>
+</head>
+<body>
+    <div id="video-container">
+        <div id="friends-list">
+            <h2>Lista de Amigos</h2>
+            <ul id="friends">
+                <li>Amigo 1</li>
+                <li>Amigo 2</li>
+                <li>Amigo 3</li>
+                <li>Amigo 4</li>
+                <!-- Puedes añadir más amigos aquí -->
+            </ul>
+        </div>
+        
+        <div id="video-wrapper">
+            <h3 id="friend-name" style="text-align: center; margin-bottom: 10px;">Selecciona un amigo para chatear</h3> <!-- Texto para el nombre del amigo -->
+            <video id="video" autoplay muted></video>
+            <div id="controls">
+                <button id="toggle-call">Iniciar Llamada</button>
+                <button id="mute">Silenciar</button>
+                <button id="play-audio">Reproducir Audio</button>
+            </div>
+        </div>
+        <audio id="audio-player" autoplay></audio> <!-- Elemento de audio -->
+    </div>
+
+    <script>
+        const videoPlayer = document.getElementById('video'); // Cambiado a 'video'
+        const toggleCallButton = document.getElementById('toggle-call');
+        const muteButton = document.getElementById('mute');
+        const playAudioButton = document.getElementById('play-audio');
+        const audioPlayer = document.getElementById('audio-player'); // Elemento de audio
+        const friendNameDisplay = document.getElementById('friend-name'); // Elemento para mostrar el nombre del amigo
+        let callActive = false;
+        let mediaStream = null;
+        let isListeningToMic = false; // Variable para controlar si se escucha el micrófono
+
+        const friends = document.getElementById('friends');
+
+        // Maneja el clic en el botón de alternar llamada
+        toggleCallButton.addEventListener('click', async () => {
+            if (!callActive) {
+                try {
+                    // Pide permiso para usar cámara y micrófono
+                    mediaStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                    videoPlayer.srcObject = mediaStream; // Asigna el stream al video
+                    toggleCallButton.textContent = 'Terminar Llamada';
+                    callActive = true;
+                } catch (error) {
+                    console.error('Error al acceder a la cámara o micrófono:', error);
+                    alert('No se pudo acceder a la cámara o micrófono. Asegúrate de tener permiso.');
+                }
+            } else {
+                // Detener la llamada
+                mediaStream.getTracks().forEach(track => track.stop()); // Detener los tracks
+                videoPlayer.srcObject = null; // Limpiar el video
+                audioPlayer.srcObject = null; // Limpiar el audio
+                toggleCallButton.textContent = 'Iniciar Llamada';
+                callActive = false;
+                isListeningToMic = false; // Resetear el estado de escuchar micrófono
+                playAudioButton.textContent = 'Escuchar Microfono'; // Resetear texto del botón
+            }
+        });
+
+        // Silenciar el micrófono
+        muteButton.addEventListener('click', () => {
+            if (mediaStream) {
+                const audioTracks = mediaStream.getAudioTracks();
+                if (audioTracks.length > 0) {
+                    audioTracks[0].enabled = !audioTracks[0].enabled; // Cambiar el estado del micrófono
+                    muteButton.textContent = audioTracks[0].enabled ? 'Silenciar Micrófono' : 'Activar Micrófono';
+                    muteButton.style.backgroundColor = audioTracks[0].enabled ? '#ffc107' : '#dc3545'; // Cambia el color
+                }
+            }
+        });
+
+        // Reproducir el audio del micrófono
+        playAudioButton.addEventListener('click', () => {
+            if (mediaStream) {
+                isListeningToMic = !isListeningToMic; // Cambia el estado de escuchar micrófono
+                if (isListeningToMic) {
+                    const audioTracks = mediaStream.getAudioTracks();
+                    if (audioTracks.length > 0) {
+                        audioPlayer.srcObject = mediaStream; // Asigna el stream al audio
+                        audioPlayer.play(); // Inicia la reproducción
+                        playAudioButton.textContent = 'Dejar de Escuchar'; // Cambia el texto
+                    } else {
+                        alert('No hay audio disponible.');
+                    }
+                } else {
+                    audioPlayer.srcObject = null; // Deja de reproducir el audio
+                    playAudioButton.textContent = 'Escuchar Microfono'; // Restablece el texto
+                }
+            }
+        });
+
+        // Iniciar videollamada con el amigo seleccionado
+        friends.addEventListener('click', (event) => {
+            if (event.target.tagName === 'LI') {
+                const friendName = event.target.textContent;
+                friendNameDisplay.textContent = `Llamando a: ${friendName}`; // Actualiza el texto con el nombre del amigo
+                alert(`Iniciar llamada con ${friendName}`); // Aquí puedes añadir la lógica para iniciar la llamada
+            }
+        });
+    </script>
+</body>
+</html>

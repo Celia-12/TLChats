@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/PersonalCSS.css">
+    <title>Chat con Amistades</title>
+</head>
+<body>
+    <!-- Barra lateral con la lista de amigos -->
+    <div id="sidebar">
+        <h1>Lista de Amistades</h1>
+        <ul id="friend-list">
+            <li onclick="startChat('Juan Guarnizo')">Juan Guarnizo</li>
+            <li onclick="startChat('Ana Pérez')">Ana Pérez</li>
+            <li onclick="startChat('Carlos López')">Carlos López</li>
+        </ul>
+    </div>
+
+    <!-- Contenido principal que muestra el chat personal -->
+    <div id="main-content">
+        <div id="chat-header">
+            Chat con <span id="username"> </span>
+        </div>
+        <div id="chat-container"></div>
+        <div id="message-input">
+            <input type="text" id="message" placeholder="Escribe un mensaje...">
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        // Función para iniciar el chat con un amigo
+        function startChat(friendName) {
+            // Cambiar el nombre del usuario en el encabezado
+            document.getElementById('username').textContent = friendName;
+            // Mostrar el área de entrada de mensajes
+            document.getElementById('message-input').style.display = 'block';
+            // Limpiar el contenedor de chat
+            document.getElementById('chat-container').innerHTML = '';
+        }
+
+        // Función para enviar un mensaje en el chat
+        function sendMessage() {
+            const message = document.getElementById('message').value;
+            if (message.trim() !== '') {
+                const chatContainer = document.getElementById('chat-container');
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message';
+                messageElement.textContent = message;
+                chatContainer.appendChild(messageElement);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                document.getElementById('message').value = '';
+            }
+        }
+
+        // Permitir enviar mensaje con la tecla "Enter"
+        document.getElementById('message').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>

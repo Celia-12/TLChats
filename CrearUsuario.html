@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/UsuarioCSS.css"> <!-- Ajusta la ruta aquí -->
+    <title>Registro</title>
+</head>
+<body>
+    <div id="container">
+        <img src="../imagenes/A.png" alt="Logo" id="logo"> <!-- Ajusta la ruta aquí -->
+        <div id="register-container">
+            <h1>Registro</h1>
+            <input type="text" id="new-username" placeholder="Nombre de Usuario" required>
+            <input type="password" id="new-password" placeholder="Contraseña" required>
+            <button onclick="register()">Crear Cuenta</button>
+            <p>¿Ya tienes una cuenta? <a href="index.html">Iniciar Sesión</a></p>
+        </div>
+    </div>
+
+    <script>
+        function register() {
+            const username = document.getElementById('new-username').value;
+            const password = document.getElementById('new-password').value;
+
+            if (username && password) {
+                localStorage.setItem('username', username);
+                window.location.href = 'Principal.html'; // Ajusta la ruta aquí
+            } else {
+                alert('Por favor ingrese un nombre de usuario y una contraseña.');
+            }
+        }
+    </script>
+</body>
+</html>

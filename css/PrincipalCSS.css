@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    background-image: url('Imagenes/FondoProfesional.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+#sidebar {
+    width: 250px;
+    background-color: rgba(29, 100, 151, 0.8);
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#sidebar img {
+    max-width: 80%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#sidebar h1 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.nav-button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.nav-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+#main-content {
+    flex-grow: 1;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 250px;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+#main-content img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;            
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#user-info {
+    margin-bottom: 20px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Media Queries para móviles */
+@media (max-width: 768px) {
+    #sidebar {
+        width: 200px; /* Ajusta el tamaño de la barra lateral para pantallas pequeñas */
+        padding: 10px;
+    }
+    
+    #main-content {
+        margin-left: 200px; /* Ajusta el margen para coincidir con el tamaño de la barra lateral */
+    }
+
+    .nav-button {
+        font-size: 14px; /* Tamaño de texto más pequeño para pantallas más pequeñas */
+        padding: 10px 15px;
+    }
+
+    #sidebar h1 {
+        font-size: 20px; /* Ajusta el tamaño de la fuente del título */
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        flex-direction: column; /* Cambia el diseño de lado a lado a una columna */
+    }
+
+    #sidebar {
+        width: 100%; /* La barra lateral ocupa todo el ancho en pantallas pequeñas */
+        height: auto; /* La altura ya no es fija */
+        position: relative; /* Quita la posición fija */
+        padding: 10px;
+    }
+
+    #main-content {
+        margin-left: 0; /* Elimina el margen izquierdo cuando la barra lateral está en la parte superior */
+        height: auto; /* Permite que el contenido principal sea de altura variable */
+    }
+
+    #main-content img {
+        max-height: 50vh; /* Limita la altura de la imagen en pantallas pequeñas */
+    }
+
+    .nav-button {
+        font-size: 14px; /* Tamaño de texto más pequeño para botones */
+        padding: 8px 12px; /* Reduce el padding para botones en móviles */
+    }
+}

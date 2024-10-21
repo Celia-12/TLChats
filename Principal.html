@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/PrincipalCSS.css">
+    <title>Pantalla Principal</title>
+</head>
+<body>
+    <div id="sidebar">
+        <img src="../Imagenes/A.png" alt="Imagen de la barra lateral">
+        <h1>Opciones</h1>
+        <div id="user-info">Bienvenido, <span id="user-name">[Nombre de Usuario]</span></div>
+        <a href="Grupal.html" class="nav-button">Chat Grupal</a>
+        <a href="Personal.html" class="nav-button">Chat Personal</a>
+        <a href="Video.html" class="nav-button">Videollamada</a>
+    </div>
+    <div id="main-content">
+        <img src="../Imagenes/VideoConf.jpg" alt="Imagen de bienvenida">
+    </div>
+
+    <script>
+        // Obtener el nombre de usuario del almacenamiento local
+        const username = localStorage.getItem('username');
+        if (username) {
+            document.getElementById('user-name').textContent = username;
+        } else {
+            window.location.href = 'index.html'; // Redirige a la página de inicio de sesión si no hay usuario
+        }
+    </script>
+</body>
+</html>
